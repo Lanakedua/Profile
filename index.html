@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+
+<style>
+:root{ --glass:rgba(255,255,255,.08); --blur:15px; --radius:20px; --accent:#ff006e; }
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;color:#fff}
+html,body{height:100%;overflow:hidden}
+body{background:url('bg.jpg') center/cover no-repeat fixed;display:flex;align-items:center;justify-content:center}
+body::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:-1}
+
+#particles{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:0;pointer-events:none}
+.particle{position:absolute;width:6px;height:6px;background:rgba(255,255,255,.45);border-radius:50%;animation:float 12s linear infinite}
+@keyframes float{0%{transform:translateY(110vh) scale(0)}10%{transform:translateY(100vh) scale(1)}100%{transform:translateY(-20vh) scale(0)}}
+
+.wrapper{display:flex;flex-direction:column;gap:30px;width:100%;max-width:340px;padding:20px;animation:fadeIn 1s ease;position:relative;z-index:1}
+@keyframes fadeIn{from{opacity:0;transform:translateY(25px)}}
+
+.card1{padding:30px 25px;background:var(--glass);border-radius:var(--radius);backdrop-filter:blur(var(--blur));border:1px solid rgba(255,255,255,.18);text-align:center}
+.avatar-wrapper{
+  position:relative;
+  margin:0 auto 18px;
+  width:115px;
+  height:115px;
+  border-radius:50%;
+}@keyframes spin{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.avatar-wrapper img{
+  width:105px;
+  height:105px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #111;
+  box-shadow:0 0 18px 4px rgba(255,255,255,.45);
+}
+
+
+.title{font-size:15px;font-weight:300;opacity:.75;margin-bottom:22px}
+
+.btn{display:flex;align-items:center;gap:0;margin:12px 0;padding:13px 20px;border-radius:50px;background:rgba(255,255,255,.12);text-decoration:none;font-weight:600;transition:transform .25s,box-shadow .25s}
+.btn:hover{transform:scale(1.06);box-shadow:0 0 18px rgba(255,255,255,.25)}
+.btn .icon{flex:0 0 auto;margin-right:12px;font-size:18px}
+.btn .label{flex:1 1 auto;text-align:center}
+.btn .status{flex:0 0 auto;font-size:12px;font-weight:400}
+.btn.wa .icon{color:#25D366}.btn.tt .icon{color:#000000}.btn.ig .icon{color:#ec22d1}
+.btn.wa .status{color:#25D366}.btn.tt .status{color:#ff2104}.btn.ig .status{color:#25D366}
+
+.card2{padding:25px;background:var(--glass);border-radius:var(--radius);backdrop-filter:blur(var(--blur));border:1px solid rgba(255,255,255,.18);text-align:center;font-size:16px;font-weight:600}
+
+@media (max-width:480px){.card1,.card2{padding:20px}.name{font-size:22px}}
+</style>
+</head>
+
+<body>
+  <div id="particles"></div>
+
+  <div class="wrapper">
+    <div class="card1">
+      <div class="avatar-wrapper">
+        <img src="What.jpg" alt="profile"/>
+      </div>
+      <div class="name">Muhammad Maulana</div>
+      <div class="title">developer</div>
+
+      <a class="btn wa" href="https://wa.me/+6281241247736" target="_blank">
+        <i class="fab fa-whatsapp icon"></i>
+        <span class="label">WhatsApp</span>
+        <span class="status">Online</span>
+      </a>
+
+      <a class="btn tt" href="https://tiktok.com/" target="_blank">
+        <i class="fab fa-tiktok icon"></i>
+        <span class="label">TikTok</span>
+        <span class="status">Offline</span>
+      </a>
+
+      <a class="btn ig" href="https://www.instagram.com/xreoip4?igsh=MXZveHU5Mm82YWEyMw==" target="_blank">
+        <i class="fab fa-instagram icon"></i>
+        <span class="label">Instagram</span>
+        <span class="status">Online</span>
+      </a>
+    </div>
+
+    <div class="card2">
+      BLUE YUNG KAI
+    </div>
+
+    <audio id="audio" src="song1.mp3" muted loop></audio>
+  </div>
+
+<script>
+const audio = document.getElementById('audio');
+let unlocked = false;
+
+window.addEventListener('load', () => audio.play().catch(()=>{}));
+
+document.body.addEventListener('click', () => {
+  if (!unlocked) {
+    audio.muted = false;
+    audio.play();
+    unlocked = true;
+  }
+});
+
+/* particles */
+const particles = document.getElementById('particles');
+for (let i = 0; i < 30; i++) {
+  const p = document.createElement('span');
+  p.className = 'particle';
+  p.style.left = Math.random()*100+'%';
+  p.style.animationDelay = Math.random()*12+'s';
+  p.style.opacity = Math.random()*0.5+0.2;
+  particles.appendChild(p);
+}
+</script>
+</body>
+</html>
